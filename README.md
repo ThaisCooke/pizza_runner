@@ -1,5 +1,7 @@
-# pizzarunner
+# Pizzarunner
 Week 2 of 8 Week SQL challenge
+
+-- As I did in the first week of the challenge, I created the tables on Microsoft SQL Server
 
 This is part of the 8 week SQL Challenge, by Danny Ma. You can find his challenge here:
 https://8weeksqlchallenge.com/case-study-2/
@@ -108,3 +110,12 @@ https://8weeksqlchallenge.com/case-study-2/
       (10, 'Salami'),
       (11, 'Tomatoes'),
       (12, 'Tomato Sauce');
+      
+  
+  
+  ## When inspecting the tables, there were a lot of "Null" values. I started by cleaning the tables before answering the questions.
+  
+  
+  
+  
+  
