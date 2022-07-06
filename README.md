@@ -115,6 +115,44 @@ https://8weeksqlchallenge.com/case-study-2/
   
   ## When inspecting the tables, there were a lot of "Null" values. I started by cleaning the tables before answering the questions.
   
+  -- Cleaning "NULL" and "Null" values from runner_orders table:
+  
+        UPDATE runner_orders
+        SET cancellation = ' '
+        WHERE cancellation IS NULL
+
+        UPDATE runner_orders
+        SET cancellation = ' '
+        WHERE cancellation = 'null'
+
+        UPDATE runner_orders
+        SET duration = ' '
+        WHERE duration = 'null'
+
+        UPDATE runner_orders
+        SET distance = ' '
+        WHERE distance = 'null'
+
+        UPDATE runner_orders
+        SET pickup_time = ' '
+        WHERE pickup_time = 'null'
+        
+ 
+ -- Cleaning "NULL" and "Null" values from customer_orders table:
+ 
+        UPDATE customer_orders
+        SET exclusions = ' '
+        WHERE exclusions = 'null'
+
+        UPDATE customer_orders
+        SET extras = ' '
+        WHERE extras = 'null'
+
+        UPDATE customer_orders
+        SET extras = ' '
+        WHERE extras IS NULL
+  
+  
   
   
   
