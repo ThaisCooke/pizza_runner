@@ -153,6 +153,11 @@ https://8weeksqlchallenge.com/case-study-2/
         WHERE extras IS NULL
   
   
+  ### A. Pizza Metrics
+  
+  Question 1: How many pizzas were ordered?
+  
+  
   
   
   
