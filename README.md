@@ -157,6 +157,13 @@ https://8weeksqlchallenge.com/case-study-2/
   
   Question 1: How many pizzas were ordered?
   
+  number_of_orders
+     14
+  
+        SELECT COUNT (*) AS number_of_orders
+        FROM customer_orders
+  
+
   
   
   
