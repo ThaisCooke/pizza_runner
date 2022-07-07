@@ -183,6 +183,23 @@ https://8weeksqlchallenge.com/case-study-2/
         
 Question 3: How many successful orders were delivered by each runner?
 
+        runner_id	successful_orders
+            1	            4
+            2	            3
+            3	            1
+            
+            
+ -- I used the functions COUNT, WHERE and GROUP BY :
+ 
+        SELECT runner_id, COUNT (order_id) AS successful_orders
+        FROM runner_orders
+        WHERE cancellation = ' '
+        GROUP BY runner_id
+        
+
+Question 4: How many of each type of pizza was delivered?
+
+
 
 
   
