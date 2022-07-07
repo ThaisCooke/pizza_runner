@@ -199,6 +199,38 @@ Question 3: How many successful orders were delivered by each runner?
 
 Question 4: How many of each type of pizza was delivered?
 
+        Type_of_pizza	    Number_of_orders
+           Meatlovers	        10
+           Vegetarian	        4
+
+
+-- First, I joined the tables pizza_names and customer_orders:
+
+        SELECT pizza_name, order_id, customer_id
+        FROM pizza_names
+        INNER JOIN customer_orders
+        ON pizza_names.pizza_id = customer_orders.pizza_id
+        
+
+-- Then I used COUNT function, however, I was getting an error message:
+
+*Msg 306, Level 16, State 2, Line 16 The text, ntext, and image data types cannot be compared or sorted, except when using IS NULL or LIKE operator*
+
+
+-- It turned out that the pizza_names column was in **text**, while the other columns from the table customer_orders were in **varchar**. I wrote the same query, using the CAST function:
+
+        SELECT CAST(pizza_name AS VARCHAR(100)) AS Type_of_pizza, COUNT (CAST (pizza_name AS VARCHAR(100))) Number_of_orders
+        FROM pizza_names
+        INNER JOIN customer_orders
+        ON pizza_names.pizza_id = customer_orders.pizza_id
+        GROUP BY CAST (pizza_name AS VARCHAR(100))
+        
+        
+ -- That query gave me the desired result
+
+
+
+
 
 
 
