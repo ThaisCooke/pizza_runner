@@ -155,7 +155,7 @@ https://8weeksqlchallenge.com/case-study-2/
   
   ### A. Pizza Metrics
   
-  Question 1: How many pizzas were ordered?
+  **Question 1**: How many pizzas were ordered?
   
         number_of_orders
             14
@@ -167,7 +167,7 @@ https://8weeksqlchallenge.com/case-study-2/
         FROM customer_orders
         
  
- Question 2: How many unique customer orders were made?
+ **Question 2**: How many unique customer orders were made?
  
         customer_id	        unique_orders
                101	            3
@@ -184,7 +184,7 @@ https://8weeksqlchallenge.com/case-study-2/
         GROUP BY customer_id
         
         
-Question 3: How many successful orders were delivered by each runner?
+**Question 3**: How many successful orders were delivered by each runner?
 
         runner_id	successful_orders
             1	            4
@@ -200,7 +200,7 @@ Question 3: How many successful orders were delivered by each runner?
         GROUP BY runner_id
         
 
-Question 4: How many of each type of pizza was delivered?
+**Question 4**: How many of each type of pizza was delivered?
 
         Type_of_pizza	    Number_of_orders
            Meatlovers	        10
@@ -230,6 +230,9 @@ Question 4: How many of each type of pizza was delivered?
         
         
  -- That query gave me the desired result
+ 
+ 
+ **Question 5**: How many Vegetarian and Meatlovers were ordered by each customer?
 
 
 
