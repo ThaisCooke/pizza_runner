@@ -162,6 +162,29 @@ https://8weeksqlchallenge.com/case-study-2/
   
         SELECT COUNT (*) AS number_of_orders
         FROM customer_orders
+        
+ 
+ Question 2: How many unique customer orders were made?
+ 
+        customer_id	        unique_orders
+               101	            3
+               102	            2
+               103	            2
+               104	            2
+               105	            1
+             
+             
+ -- I used the functions COUNT DISTINCT and GROUP BY:
+ 
+        SELECT customer_id, COUNT (Distinct order_id) AS unique_orders
+        FROM customer_orders
+        GROUP BY customer_id
+        
+        
+Question 3: How many successful orders were delivered by each runner?
+
+
+
   
 
   
