@@ -233,6 +233,15 @@ https://8weeksqlchallenge.com/case-study-2/
  
  
  **Question 5**: How many Vegetarian and Meatlovers were ordered by each customer?
+ 
+ 
+ 
+ -- First, I joined the tables pizza_names and customer_orders:
+ 
+        SELECT pizza_name, order_id, customer_id
+        FROM pizza_names
+        INNER JOIN customer_orders
+        ON pizza_names.pizza_id = customer_orders.pizza_id
 
 
 
