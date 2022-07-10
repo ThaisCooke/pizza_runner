@@ -263,6 +263,10 @@ https://8weeksqlchallenge.com/case-study-2/
 
 
 
+**Question 6**: What was the maximum number of pizzas delivered in a single order?
+
+
+
 
 
 
