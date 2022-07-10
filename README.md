@@ -234,7 +234,15 @@ https://8weeksqlchallenge.com/case-study-2/
  
  **Question 5**: How many Vegetarian and Meatlovers were ordered by each customer?
  
- 
+        customer_id	        Number_of_pizzas	        Type_of_pizza
+            101	                    2	                    Meatlovers
+            101	                    1	                    Vegetarian
+            102	                    2	                    Meatlovers
+            102	                    1	                    Vegetarian
+            103	                    3	                    Meatlovers
+            103	                    1	                    Vegetarian
+            104	                    3	                    Meatlovers
+            105	                    1	                    Vegetarian
  
  -- First, I joined the tables pizza_names and customer_orders:
  
@@ -242,6 +250,16 @@ https://8weeksqlchallenge.com/case-study-2/
         FROM pizza_names
         INNER JOIN customer_orders
         ON pizza_names.pizza_id = customer_orders.pizza_id
+        
+-- Then, I used the functions COUNT, GROUP BY and ORDER BY (remembering to use CAST for pizza_name column)
+
+
+           SELECT customer_id, COUNT (*) AS Number_of_pizzas, CAST (pizza_name AS VARCHAR(100)) AS Type_of_pizza
+		   FROM pizza_names
+           INNER JOIN customer_orders
+           ON pizza_names.pizza_id = customer_orders.pizza_id
+		   GROUP BY customer_id, CAST (pizza_name AS VARCHAR(100))
+		   ORDER BY customer_id
 
 
 
