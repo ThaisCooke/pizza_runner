@@ -265,6 +265,44 @@ https://8weeksqlchallenge.com/case-study-2/
 
 **Question 6**: What was the maximum number of pizzas delivered in a single order?
 
+		number_of_pizzas
+		        3
+
+
+-- First, I joined the tables customer_orders and runner_orders, eliminating the orders that had been cancelled:
+
+		SELECT dbo.customer_orders.order_id, distance, customer_id
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE distance <> ' '
+		
+
+-- Then, I did one table for counting the number of customers that had placed orders, using the COUNT function:
+
+		SELECT dbo.runner_orders.order_id, COUNT (customer_id) AS pizzas_per_order
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE distance <> ' '
+  		GROUP BY dbo.runner_orders.order_id
+		
+		
+-- Next, I put that on a cte in order to use the functions COUNT and MAX together:
+
+		WITH cte_pizza_count AS
+  		(SELECT dbo.customer_orders.order_id, COUNT (customer_id) AS pizzas_per_order
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE distance <> ' '
+  		GROUP BY dbo.customer_orders.order_id)
+
+  		SELECT MAX (pizzas_per_order) AS number_of_pizzas
+  		FROM cte_pizza_count
+
+
+**Question 7**: For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
 
 
