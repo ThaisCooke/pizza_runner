@@ -371,6 +371,33 @@ https://8weeksqlchallenge.com/case-study-2/
 		
 
 ** Question 9**: What was the total volume of pizzas ordered for each hour of the day?
+
+		hour_of_day	number_of_pizzas
+		     13	                3
+		     18	                3
+		     19	                1
+		     21	                2
+		     23	                3
+		
+
+-- First, I joined the tables runner_orders and customer_orders with the information necessary for this table:
+
+		SELECT dbo.runner_orders.order_id, customer_id, order_time
+  		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+  
+  
+-- Using the function DATEPART to extract the time of the day:
+
+		SELECT  DATEPART (HOUR, (order_time)) AS hour_of_day,
+  		COUNT (dbo.runner_orders.order_id) AS number_of_pizzas
+  		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+  		GROUP BY DATEPART (HOUR, (order_time))
 		
 		
 
