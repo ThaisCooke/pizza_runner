@@ -306,6 +306,74 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 7**: For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
 
+		customer_id	at_least_1_change	no_change
+		    101	               0	           2
+		    102	               0	           3
+		    103	               3	           0
+		    104	               2	           1
+		    105	               1	           0
+
+-- First, I joined the tables runner_orders and customer_orders, in order to select only the pizzas that had been delivered:
+
+		SELECT dbo.runner_orders.order_id, customer_id, exclusions, extras
+  		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+		
+-- Then, I applied the SUM and CASE functions:
+
+SELECT customer_id,
+ SUM(CASE 
+  WHEN exclusions <> ' ' OR extras <> ' ' THEN 1
+  ELSE 0
+  END) AS at_least_1_change,
+ SUM(CASE 
+  WHEN exclusions = ' ' AND extras = ' ' THEN 1 
+  ELSE 0
+  END) AS no_change
+FROM runner_orders
+  INNER JOIN customer_orders
+  ON runner_orders.order_id = customer_orders.order_id
+  WHERE distance <> ' '
+  GROUP BY customer_id
+  
+  **Question 8**: How many pizzas were delivered that had both exclusions and extras?
+  
+  
+  		customer_id	exclusions_and_extras
+		  104	                 1
+  
+  -- First, I joined the tables runner_orders and customer_orders, in order to select only the pizzas that had been delivered:
+
+		SELECT dbo.runner_orders.order_id, customer_id, exclusions, extras
+  		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+		
+
+-- Then, I used the functions SUM, CASE and WHERE (to filter out the customers that wanted both exclusions):
+  
+  
+  		SELECT customer_id,  
+  		SUM, (CASE 
+		WHEN exclusions <> ' ' AND extras <> ' ' THEN 1 
+  		ELSE 0
+  		END) AS exclusions_and_extras
+  		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+  		AND exclusions <> ' ' 
+  		AND extras <> ' '
+  		GROUP BY customer_id
+		
+
+** Question 9**: What was the total volume of pizzas ordered for each hour of the day?
+		
+		
+
 
 
 
