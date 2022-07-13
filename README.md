@@ -370,7 +370,7 @@ https://8weeksqlchallenge.com/case-study-2/
   		GROUP BY customer_id
 		
 
-** Question 9**: What was the total volume of pizzas ordered for each hour of the day?
+**Question 9**: What was the total volume of pizzas ordered for each hour of the day?
 
 		hour_of_day	number_of_pizzas
 		     13	                3
@@ -400,7 +400,7 @@ https://8weeksqlchallenge.com/case-study-2/
   		GROUP BY DATEPART (HOUR, (order_time))
 		
 		
-** Question 10: What was the volume of orders for each day of the week?
+**Question 10**: What was the volume of orders for each day of the week?
 
 
 
