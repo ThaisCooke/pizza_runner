@@ -323,20 +323,20 @@ https://8weeksqlchallenge.com/case-study-2/
 		
 -- Then, I applied the SUM and CASE functions:
 
-SELECT customer_id,
- SUM(CASE 
-  WHEN exclusions <> ' ' OR extras <> ' ' THEN 1
-  ELSE 0
-  END) AS at_least_1_change,
- SUM(CASE 
-  WHEN exclusions = ' ' AND extras = ' ' THEN 1 
-  ELSE 0
-  END) AS no_change
-FROM runner_orders
-  INNER JOIN customer_orders
-  ON runner_orders.order_id = customer_orders.order_id
-  WHERE distance <> ' '
-  GROUP BY customer_id
+		SELECT customer_id,
+ 		SUM(CASE 
+  		WHEN exclusions <> ' ' OR extras <> ' ' THEN 1
+  		ELSE 0
+  		END) AS at_least_1_change,
+ 		SUM(CASE 
+  		WHEN exclusions = ' ' AND extras = ' ' THEN 1 
+  		ELSE 0
+  		END) AS no_change
+		FROM runner_orders
+  		INNER JOIN customer_orders
+  		ON runner_orders.order_id = customer_orders.order_id
+  		WHERE distance <> ' '
+  		GROUP BY customer_id
   
   **Question 8**: How many pizzas were delivered that had both exclusions and extras?
   
