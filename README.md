@@ -458,7 +458,7 @@ https://8weeksqlchallenge.com/case-study-2/
   			GROUP BY DATEPART (WEEK, (registration_date))
 
 
-**Question2**: What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+**Question 2**: What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 
 
