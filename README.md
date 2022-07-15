@@ -420,6 +420,44 @@ https://8weeksqlchallenge.com/case-study-2/
 
 
 
+### B. Runner and Customer Experience:
+
+--Note: I realized that for some reason, the table customer_orders is in 2020, and the table runners is in 2021. I altered the table runners for 2020 in order to use both tables in the same year calendar:
+
+		UPDATE dbo.runners
+		SET registration_date = '2020-01-01'
+		WHERE runner_id = 1
+
+		UPDATE dbo.runners
+		SET registration_date = '2020-01-03'
+		WHERE runner_id = 2
+
+		UPDATE dbo.runners
+		SET registration_date = '2020-01-08'
+		WHERE runner_id = 3
+
+		UPDATE dbo.runners
+		SET registration_date = '2020-01-15'
+		WHERE runner_id = 4
+
+
+**Question 1**: How many runners signed up for each 1 week period?
+
+
+	week_period	number_of_runners
+		1	       2
+		2	       1
+		3	       1
+
+
+-- I used the function DATEPART for this question:
+
+		SELECT  DATEPART (WEEK, (registration_date)) AS week_period,
+  			COUNT (*) AS number_of_runners
+  			FROM runners
+  			GROUP BY DATEPART (WEEK, (registration_date))
+
+
 
 
 
