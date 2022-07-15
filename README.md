@@ -402,6 +402,21 @@ https://8weeksqlchallenge.com/case-study-2/
 		
 **Question 10**: What was the volume of orders for each day of the week?
 
+		day_of_the_week		number_of_pizzas
+	 	    Saturday	                5
+		    Thursday	                3
+		    Wednesday	                4
+		    
+		    
+-- Similar query as the question before, using DATENAME instead:
+
+		SELECT  DATENAME (WEEKDAY, (order_time)) AS day_of_the_week,
+		COUNT (*) AS number_of_pizzas
+		FROM runner_orders
+		INNER JOIN customer_orders
+		ON runner_orders.order_id = customer_orders.order_id
+		WHERE distance <> ' '
+		GROUP BY DATENAME (WEEKDAY, (order_time))
 
 
 
