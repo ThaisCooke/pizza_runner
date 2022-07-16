@@ -493,6 +493,37 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 3**: Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
 
+		order_id	number_of_orders	pickup_minutes
+		   1	               1	              10
+		   2	               1	              10
+		   5	               1	              10
+		   7	               1	              10
+		   10	               2	              16
+		   3	               2	              21
+		   8	               1	              21
+		   4	               3	              30
+
+-- First, I joined the tables customer_orders and runner_orders:
+
+		SELECT dbo.customer_orders.order_id, runner_id, order_time, pickup_time
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE pickup_time <> ' '
+
+
+-- Then, I calculated the time difference on a CTE using DATEDIFF function and then the count of pizzas using COUNT function:
+
+
+		WITH cte AS (SELECT dbo.customer_orders.order_id, DATEDIFF(MINUTE, order_time, pickup_time) AS pickup_minutes
+			FROM customer_orders
+			INNER JOIN runner_orders
+			ON customer_orders.order_id = runner_orders.order_id
+			WHERE pickup_time <> ' ')
+
+			SELECT order_id, COUNT (order_id) AS number_of_orders, pickup_minutes
+			FROM cte
+			GROUP BY order_id, pickup_minutes
 
 
 
