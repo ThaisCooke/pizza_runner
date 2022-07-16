@@ -461,6 +461,12 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 2**: What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 
+		runner_id	avg_runner_time
+		    1	              15
+		    2	              24
+		    3	              10
+
+
 -- First, I joined the tables customer_orders and runner_orders:
 
 		SELECT dbo.customer_orders.order_id, runner_id, order_time, pickup_time
@@ -470,6 +476,19 @@ https://8weeksqlchallenge.com/case-study-2/
   		WHERE pickup_time <> ' '
 
 
+-- Then, I calculated the time difference on a CTE using DATEDIFF function and then the average using AVG function:
+
+		WITH cte AS (SELECT runner_id, DATEDIFF(MINUTE, order_time, pickup_time) AS time_difference
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE pickup_time <> ' ')
+
+  		SELECT runner_id, AVG (time_difference) AS avg_runner_time
+  		FROM cte
+  		GROUP BY runner_id
+		
+		
 
 
 		
