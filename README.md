@@ -498,11 +498,7 @@ https://8weeksqlchallenge.com/case-study-2/
   		ALTER COLUMN duration int
 		
 		
--- Using AVERAGE function:
 
-		SELECT runner_id, AVG (duration) AS avg_runner_time
-  		FROM runner_orders
-  		GROUP BY runner_id
 
 
 
