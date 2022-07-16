@@ -490,8 +490,9 @@ https://8weeksqlchallenge.com/case-study-2/
 		
 		
 
+**Question 3**: Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
-		
+
 
 
 
