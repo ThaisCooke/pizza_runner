@@ -460,6 +460,38 @@ https://8weeksqlchallenge.com/case-study-2/
 
 **Question 2**: What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
+-- First, I had to modify the column 'duration' into numbers:
+
+		UPDATE runner_orders
+  		SET duration = '32'
+  		WHERE order_id = 1
+
+  		UPDATE runner_orders
+  		SET duration = '27'
+  		WHERE order_id = 2
+
+  		UPDATE runner_orders
+  		SET duration = '20'
+  		WHERE order_id = 3
+
+  		UPDATE runner_orders
+  		SET duration = '25'
+  		WHERE order_id = 7
+
+  		UPDATE runner_orders
+  		SET duration = '15'
+  		WHERE order_id = 8
+
+  		UPDATE runner_orders
+  		SET duration = '10'
+  		WHERE order_id = 10
+
+-- Then, I modified the column "duration" from VARCHAR to INT:
+
+		ALTER TABLE runner_orders
+  		ALTER COLUMN duration int
+		
+		
 
 
 
