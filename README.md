@@ -461,6 +461,17 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 2**: What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 
+-- First, I joined the tables customer_orders and runner_orders:
+
+		SELECT dbo.customer_orders.order_id, runner_id, order_time, pickup_time
+  		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE pickup_time <> ' '
+
+
+
+
 		
 
 
