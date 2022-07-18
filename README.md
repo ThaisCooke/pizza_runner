@@ -524,6 +524,57 @@ https://8weeksqlchallenge.com/case-study-2/
 			SELECT order_id, COUNT (order_id) AS number_of_orders, pickup_minutes
 			FROM cte
 			GROUP BY order_id, pickup_minutes
+			
+			
+**Question 4**: What was the average distance travelled for each customer?
+
+
+-- Firts, I joined the tables "runner_orders" and customer_orders":
+
+
+		SELECT dbo.customer_orders.order_id, customer_id, distance
+  			FROM customer_orders
+  			INNER JOIN runner_orders
+  			ON customer_orders.order_id = runner_orders.order_id
+  			WHERE pickup_time <> ' '
+		
+	
+		
+-- Then, I had to modify the column 'distance' into numbers, removing the "Km":
+
+		UPDATE runner_orders
+		SET distance = '20'
+		WHERE order_id = 1
+
+
+		UPDATE runner_orders
+		SET distance = '20'
+		WHERE order_id = 2
+
+		UPDATE runner_orders
+		SET distance = '13.4'
+		WHERE order_id = 3
+
+		UPDATE runner_orders
+		SET distance = '25'
+		WHERE order_id = 7
+
+		UPDATE runner_orders
+		SET distance = '23.4'
+		WHERE order_id = 8
+
+		UPDATE runner_orders
+		SET distance = '10'
+		WHERE order_id = 10
+
+--Finally, I modified the column "distance" FROM VARCHAR to INT:
+
+		ALTER TABLE runner_orders
+  		ALTER COLUMN duration bigint
+		
+*NOTE: For some reason, when converting from VARCHAR to INT, I had originally used INT instead of BIGINT and it wouldn't work. That is the reason why I chose BIGINT*
+
+
 
 
 
