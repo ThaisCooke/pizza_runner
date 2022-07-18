@@ -567,12 +567,6 @@ https://8weeksqlchallenge.com/case-study-2/
 		SET distance = '10'
 		WHERE order_id = 10
 
---Finally, I modified the column "distance" FROM VARCHAR to INT:
-
-		ALTER TABLE runner_orders
-  		ALTER COLUMN duration bigint
-		
-*NOTE: For some reason, when converting from VARCHAR to INT, I had originally used INT instead of BIGINT and it wouldn't work. That is the reason why I chose BIGINT*
 
 
 
