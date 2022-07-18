@@ -636,22 +636,22 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 6**: What was the average speed for each runner for each delivery and do you notice any trend for these values?
 
 
-	runner_id	customer_id	order_id	pizza_count	distance	duration_hr	avg_speed
-	1		101		1		1		20		0		37.50000000000000000
-	1		101		2		1		20		0		44.44000000000000000
-	1		102		3		2		13		0		39.00000000000000000
-	2		103		4		3		23		0		34.50000000000000000
-	3		104		5		1		10		0		40.00000000000000000
-	2		105		7		1		25		0		60.00000000000000000
-	2		102		8		1		23		0		92.00000000000000000
-	1		104		10		2		10		0		60.00000000000000000
+	runner_id	customer_id	order_id	pizza_count	distance	avg_speed
+	1		101		1		1		20		37.50000000000000000
+	1		101		2		1		20		44.44000000000000000
+	1		102		3		2		13		39.00000000000000000
+	2		103		4		3		23		34.50000000000000000
+	3		104		5		1		10		40.00000000000000000
+	2		105		7		1		25		60.00000000000000000
+	2		102		8		1		23		92.00000000000000000
+	1		104		10		2		10		60.00000000000000000
 
 
 -- Query using functions COUNT, CAST and ROUND:
 
 		SELECT runner_id, customer_id, dbo.customer_orders.order_id, 
  		COUNT(dbo.customer_orders.order_id) AS pizza_count, 
- 		CAST(distance AS numeric) AS distance, (duration / 60) AS duration_hr , 
+ 		CAST(distance AS numeric) AS distance,
  		ROUND((CAST(distance AS numeric)/duration * 60), 2) AS avg_speed
 		FROM runner_orders 
 		JOIN customer_orders 
@@ -659,6 +659,8 @@ https://8weeksqlchallenge.com/case-study-2/
 		WHERE distance <> ' '
 		GROUP BY runner_id, customer_id, dbo.customer_orders.order_id, distance, duration
 		ORDER BY order_id;
+		
+*TRENDS*:
 
 
 
