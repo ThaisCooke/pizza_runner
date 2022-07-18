@@ -529,6 +529,14 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 4**: What was the average distance travelled for each customer?
 
 
+		customer_id	distance
+		    101	         20.000000
+		    102	         16.333333
+		    103	         23.000000
+		    104	         10.000000
+		    105	         25.000000
+
+
 -- Firts, I joined the tables "runner_orders" and customer_orders":
 
 
@@ -566,6 +574,70 @@ https://8weeksqlchallenge.com/case-study-2/
 		UPDATE runner_orders
 		SET distance = '10'
 		WHERE order_id = 10
+
+--Then, I calculuated the average distance using AVG and CAST to convert from VARCHAR into NUMERIC:
+
+		SELECT customer_id, AVG(CAST (runner_orders.distance AS numeric)) AS distance
+		FROM customer_orders
+  		INNER JOIN runner_orders
+  		ON customer_orders.order_id = runner_orders.order_id
+  		WHERE pickup_time <> ' '
+		GROUP BY customer_id
+		
+
+**Question 5**: What was the difference between the longest and shortest delivery times for all orders?
+
+		delivery_time_difference
+			30
+
+
+
+-- First, I had to modify the column 'duration' into numbers:
+
+		UPDATE runner_orders
+  		SET duration = '32'
+  		WHERE order_id = 1
+
+  		UPDATE runner_orders
+  		SET duration = '27'
+  		WHERE order_id = 2
+
+  		UPDATE runner_orders
+  		SET duration = '20'
+  		WHERE order_id = 3
+
+  		UPDATE runner_orders
+  		SET duration = '25'
+  		WHERE order_id = 7
+
+  		UPDATE runner_orders
+  		SET duration = '15'
+  		WHERE order_id = 8
+
+  		UPDATE runner_orders
+  		SET duration = '10'
+  		WHERE order_id = 10
+
+-- Then, I modified the column "duration" from VARCHAR to INT:
+
+		ALTER TABLE runner_orders
+  		ALTER COLUMN duration int
+
+
+--Now, I calculated the difference using the functions MAX and MIN:
+
+		SELECT 
+    		MAX(duration) - MIN(duration) AS delivery_time_difference
+		FROM runner_orders
+		WHERE duration <> ' '
+		
+		
+
+**Question 6**: What was the average speed for each runner for each delivery and do you notice any trend for these values?
+
+
+
+
 
 
 
