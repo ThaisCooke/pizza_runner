@@ -640,12 +640,11 @@ https://8weeksqlchallenge.com/case-study-2/
 	1		101		1		1		20		37.50000000000000000
 	1		101		2		1		20		44.44000000000000000
 	1		102		3		2		13		39.00000000000000000
-	2		103		4		3		23		34.50000000000000000
-	3		104		5		1		10		40.00000000000000000
-	2		105		7		1		25		60.00000000000000000
-	2		102		8		1		23		92.00000000000000000
 	1		104		10		2		10		60.00000000000000000
-
+	2		102		8		1		23		92.00000000000000000
+	2		103		4		3		23		34.50000000000000000
+	2		105		7		1		25		60.00000000000000000
+	3		104		5		1		10		40.00000000000000000
 
 -- Query using functions COUNT, CAST and ROUND:
 
@@ -658,9 +657,11 @@ https://8weeksqlchallenge.com/case-study-2/
  		ON dbo.customer_orders.order_id = dbo.runner_orders.order_id
 		WHERE distance <> ' '
 		GROUP BY runner_id, customer_id, dbo.customer_orders.order_id, distance, duration
-		ORDER BY order_id;
+		ORDER BY runner_id;
 		
 *TRENDS*:
+
+
 
 
 
