@@ -669,7 +669,7 @@ https://8weeksqlchallenge.com/case-study-2/
 
 *Runner 1*: Had the most orders. He seems to have a steady speed average, expect for one order number 10, when his average speed was up (since it was a Saturday, most likely he didn't hit much traffic)
 
-*Runner 2*: Seems to be the faster, but he also had high speed in later hours, so most than likely he didn't hit any traffic.
+*Runner 2*: Had the most discrepancy in the speed averages. 
 
 *Runner 3*: Needs to pick up more orders for comparing. 
 
