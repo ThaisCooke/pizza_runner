@@ -677,6 +677,22 @@ https://8weeksqlchallenge.com/case-study-2/
 *Runner 3*: Needs to pick up more orders for comparing. 
 
 
+**Question 7**: What is the successful delivery percentage for each runner?
+
+		runner_id	success_perc
+		1		100
+		2		75
+		3		50
+		
+		
+	SELECT runner_id, 
+ 	ROUND(100 * SUM
+  	(CASE WHEN duration = 0 THEN 0
+  	ELSE 1
+  	END) / COUNT(*), 0) AS success_perc
+	FROM runner_orders
+	GROUP BY runner_id;
+
 
 
 
