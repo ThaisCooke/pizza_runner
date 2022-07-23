@@ -636,30 +636,42 @@ https://8weeksqlchallenge.com/case-study-2/
 **Question 6**: What was the average speed for each runner for each delivery and do you notice any trend for these values?
 
 
-	runner_id	customer_id	order_id	pizza_count	distance	avg_speed
-	1		101		1		1		20		37.50000000000000000
-	1		101		2		1		20		44.44000000000000000
-	1		102		3		2		13		39.00000000000000000
-	1		104		10		2		10		60.00000000000000000
-	2		102		8		1		23		92.00000000000000000
-	2		103		4		3		23		34.50000000000000000
-	2		105		7		1		25		60.00000000000000000
-	3		104		5		1		10		40.00000000000000000
+	runner_id	customer_id	order_id	pizza_count	distance	avg_speed	day_of_week	Traffic
+	1		101		1		1		20		37.50		Wednesday	Rush Hour
+	1		101		2		1		20		44.44		Wednesday	Rush Hour
+	1		102		3		2		13		39.00		Thursday	Late night
+	1		104		10		2		10		60.00		Saturday	Rush Hour
+	2		102		8		1		23		92.00		Thursday	Late night
+	2		103		4		3		23		34.50		Saturday	Regular Traffic
+	2		105		7		1		25		60.00		Wednesday	Late night
+	3		104		5		1		10		40.00		Wednesday	Late night
 
 -- Query using functions COUNT, CAST and ROUND:
 
 		SELECT runner_id, customer_id, dbo.customer_orders.order_id, 
- 		COUNT(dbo.customer_orders.order_id) AS pizza_count, 
- 		CAST(distance AS numeric) AS distance,
- 		ROUND((CAST(distance AS numeric)/duration * 60), 2) AS avg_speed
+		COUNT(dbo.customer_orders.order_id) AS pizza_count, 
+		CAST(distance AS numeric) AS distance,
+		ROUND((CAST(distance AS numeric)/duration * 60), 2) AS avg_speed, 
+		DATENAME (WEEKDAY, (order_time)) AS day_of_week,
+		CASE WHEN 
+		DATEPART (HOUR, (order_time)) BETWEEN 18 AND 20 THEN 'Rush Hour'
+		WHEN DATEPART (HOUR, (order_time)) BETWEEN 21 AND 23 THEN 'Late night' 
+		ELSE 'Regular Traffic'
+		END AS Traffic
 		FROM runner_orders 
 		JOIN customer_orders 
- 		ON dbo.customer_orders.order_id = dbo.runner_orders.order_id
+		ON dbo.customer_orders.order_id = dbo.runner_orders.order_id
 		WHERE distance <> ' '
-		GROUP BY runner_id, customer_id, dbo.customer_orders.order_id, distance, duration
+		GROUP BY runner_id, customer_id, dbo.customer_orders.order_id, distance, duration, DATEPART (HOUR, (order_time)), DATENAME (WEEKDAY, (order_time))
 		ORDER BY runner_id;
 		
 *TRENDS*:
+
+*Runner 1*: Had the most orders. He seems to have a steady speed average, expect for one order number 10, when his average speed was up (since it was a Saturday, most likely he didn't hit much traffic)
+
+*Runner 2*: Seems to be the faster, but he also had high speed in later hours, so most than likely he didn't hit any traffic.
+
+*Runner 3*: Needs to pick up more orders for comparing. 
 
 
 
