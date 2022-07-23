@@ -115,7 +115,7 @@
 		    105	         25.000000
 
 
--- Firts, I joined the tables "runner_orders" and customer_orders":
+-- First, I joined the tables "runner_orders" and customer_orders":
 
 
 		SELECT dbo.customer_orders.order_id, customer_id, distance
@@ -250,3 +250,7 @@
 *Runner 2*: Had the most discrepancy in the speed averages. 
 
 *Runner 3*: Needs to pick up more orders for comparing. 
+
+
+**Question 7**: What is the successful delivery percentage for each runner?
+
